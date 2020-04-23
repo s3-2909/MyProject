@@ -46,7 +46,6 @@ export default class Calculator extends HandleElement {
                 callback && callback(true)
             }
         }).catch(err => {
-            console.log(err)
             callback && callback(false)
         })
     }
@@ -87,14 +86,12 @@ export default class Calculator extends HandleElement {
      */
     keyClick(e) {
         let target = e.target.getAttribute('data-key')
-        console.log('keyClick:', target);
         let targetValue = Number(target)
         if (target === 'AC') { // 归零
             this.count = 0
         } else if (target === 'Del') { // 删除
 
             if (~~this.count < 0) {
-                console.log(~this.count);
                 this.count = 0
             } else {
                 this.count = String(this.count)
@@ -110,8 +107,6 @@ export default class Calculator extends HandleElement {
             } else {
                 this.count == 0 ? this.count = String(target) : this.count += String(target)
             }
-
-
         } else { // 字符
             let strCount = this.count <= 9 || this.count >= 0 ? String(this.count) : String(this.count)[this.count.length - 1]
 
@@ -130,12 +125,6 @@ export default class Calculator extends HandleElement {
         }
 
         this.handleCount()
-    }
-    /**
-     * 归零
-     */
-    clear() {
-
     }
     /**
      * 求和
